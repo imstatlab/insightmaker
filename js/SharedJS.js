@@ -12,7 +12,7 @@ var environment = {
 	AutoDetect: 0,
 	InsightMakerOnline: 1,
 	WebOffline: 2,
-	NodeWebKit: 3 /* Not yet implmented. Suggestion for future */
+	NodeWebKit: 3
 }
 
 var viewConfig = {
@@ -41,6 +41,8 @@ environmentConfig();
 function environmentAutoDetect() {
 	if(location.hostname.match("insightmaker.com")!=null) {
 		return environment.InsightMakerOnline;
+	} else if (nw_require!=null) {
+		return environment.NodeWebKit;
 	} else {
 		return environment.WebOffline;
 	}
@@ -51,10 +53,14 @@ function environmentConfig() {
 		viewConfig.environment = environmentAutoDetect();
 	}
 	switch(viewConfig.environment) {
-		case environment.InsightMakerOnline:
-		
+		case environment.InsightMakerOnline:		
 			break;
 		case environment.WebOffline:
+			viewConfig.saveEnabled=false;
+			viewConfig.showTopLinks=false;
+			viewConfig.showImportExport=false;
+			break;
+		case environment.NodeWebKit:
 			viewConfig.saveEnabled=false;
 			viewConfig.showTopLinks=false;
 			viewConfig.showImportExport=false;

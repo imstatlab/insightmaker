@@ -112,7 +112,9 @@ Ext.setGlyphFontFamily('FontAwesome');
 	var mxLoadResources = false;
 	var mxLoadStylesheets = false;
 	</script>
-
+<!-- Including nwjs module. Executed early to maximize window. Must be initialized before require.js to avoid conflict over name "require"-->
+<script type="text/javascript" src="../js/NWInit.js"></script>
+<!-- end of importing nwjs module-->
 	<script type="text/javascript" src="../resources/require.js"></script>
 	<script type="text/javascript" src="../js/Localization.js"></script>
 	<script type="text/javascript" src="../js/Variables.js"></script>
